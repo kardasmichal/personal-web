@@ -161,15 +161,38 @@ export default function Home() {
 
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "Person",
-    name: "Michal Kardaš",
-    url: "https://kardas.cz",
-    image: "https://kardas.cz/michal-kardas-dark.png",
-    email: "mailto:kardas.michal@gmail.com",
-    jobTitle: "Digital Business & E-commerce Lead",
-    description: "Pomáhám firmám růst v digitálu — od nalezení příležitosti a business case přes prioritizaci až po ownership a dotažení projektu.",
-    sameAs: [LINKS.linkedin, LINKS.tlappka],
-    knowsAbout: ["E-commerce", "B2B digitalization", "AI adoption", "Product strategy", "Roadmapping", "Business cases", "Digital business"],
+    "@graph": [
+      {
+        "@type": "ProfilePage",
+        "@id": "https://kardas.cz/#profile",
+        url: "https://kardas.cz",
+        name: "Michal Kardaš — digitální růst, e-commerce, B2B a AI",
+        inLanguage: "cs-CZ",
+        dateModified: "2026-11-13",
+        mainEntity: { "@id": "https://kardas.cz/#person" },
+      },
+      {
+        "@type": "Person",
+        "@id": "https://kardas.cz/#person",
+        name: "Michal Kardaš",
+        url: "https://kardas.cz",
+        image: "https://kardas.cz/michal-kardas-dark.png",
+        email: "mailto:kardas.michal@gmail.com",
+        jobTitle: "Digital Business & E-commerce Lead",
+        description: "Pomáhám firmám růst v digitálu. Najdu příležitost, určím prioritu a projekt dotáhnu od zadání až k výsledku.",
+        sameAs: [LINKS.linkedin],
+        worksFor: [{ "@type": "Organization", name: "tlappka", url: LINKS.tlappka }],
+        knowsAbout: ["E-commerce", "B2B digitalizace", "AI adoption", "Product strategy", "Roadmapping", "Business cases", "Digital business"],
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://kardas.cz/#website",
+        url: "https://kardas.cz",
+        name: "Michal Kardaš",
+        inLanguage: "cs-CZ",
+        publisher: { "@id": "https://kardas.cz/#person" },
+      },
+    ],
   };
 
   return (
@@ -178,7 +201,9 @@ export default function Home() {
 
       <header className={`nav floating-nav ${mobileMenuOpen ? "menu-open" : ""}`}>
         <a className="brand" href="#top" aria-label="Michal Kardaš — nahoru" onClick={() => setMobileMenuOpen(false)}>
-          <span className="brand-mark">MK.</span>
+          <span className="brand-avatar" aria-hidden="true">
+            <Image src="/michal-kardas-dark.png" alt="" width={80} height={80} priority />
+          </span>
           <span className="brand-name">Michal Kardaš</span>
         </a>
         <nav className="nav-links" aria-label="Hlavní navigace">
@@ -213,7 +238,7 @@ export default function Home() {
               <span>E-commerce</span><span>B2B</span><span>AI</span><span>Lepší rozhodování</span>
             </div>
             <p className="lead">
-              Hledám, kde business ztrácí růst nebo efektivitu, určím správnou prioritu a když dává smysl, vezmu ji jako business/project owner a dotáhnu od zadání až k výsledku.
+              Najdu, kde business ztrácí růst nebo efektivitu, určím správnou prioritu a projekt dotáhnu od zadání až k výsledku.
             </p>
           </div>
 
@@ -317,6 +342,7 @@ export default function Home() {
           <h2>Hledáte někoho, kdo najde správný další krok — a vezme odpovědnost za jeho dotažení?</h2>
           <p className="contact-sub">Brno · jižní Morava · remote v ČR</p>
           <a href={LINKS.email} className="contact-link">Napište mi <Arrow /></a>
+          <a href={LINKS.email} className="contact-email">kardas.michal@gmail.com</a>
         </div>
       </section>
 

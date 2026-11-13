@@ -50,19 +50,26 @@ button { font: inherit; }
   min-width: 0;
   white-space: nowrap;
 }
-.brand-mark {
-  width: 38px;
-  height: 38px;
+.brand-avatar {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex: 0 0 auto;
-  background: var(--acid);
-  color: #111;
-  font-weight: 900;
-  font-size: 13px;
-  letter-spacing: -.06em;
+  overflow: hidden;
+  border: 1px solid rgba(215,255,63,.5);
+  background: #111;
+  box-shadow: 0 0 0 2px rgba(215,255,63,.06);
+}
+.brand-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 52% 16%;
+  transform: scale(1.55);
+  transform-origin: 52% 18%;
 }
 .brand-name { font-weight: 800; font-size: 20px; letter-spacing: -.035em; }
 .nav-links { display: flex; align-items: center; gap: 24px; font-size: 13px; }
@@ -241,6 +248,8 @@ button { font: inherit; }
 .contact-inner h2 { font-size:clamp(48px,6.9vw,92px); line-height:.96; letter-spacing:-.055em; max-width:1050px; margin:0 0 28px; }
 .contact-sub { max-width:680px; color:var(--muted); font-size:18px; line-height:1.55; margin:0 0 46px; }
 .contact-link { display:inline-flex; gap:15px; border-bottom:1px solid var(--acid); color:var(--acid); padding-bottom:8px; font-size:21px; }
+.contact-email { display:block; width:max-content; margin-top:18px; color:var(--ink); font-size:16px; letter-spacing:.01em; }
+.contact-email:hover { color:var(--acid); }
 .footer { min-height:86px; display:flex; align-items:center; justify-content:space-between; color:var(--muted); font-size:12px; }
 .footer-links { display:flex; align-items:center; gap:20px; }
 .footer-links a { color:var(--ink); }
@@ -261,7 +270,7 @@ button { font: inherit; }
     gap: 8px;
   }
   .brand { min-width: 0; gap: 8px; }
-  .brand-mark { width: 34px; height: 34px; font-size: 12px; }
+  .brand-avatar { width: 34px; height: 34px; }
   .brand-name { font-size: 17px; overflow: hidden; text-overflow: ellipsis; }
   .nav-links { display:none; }
   .nav-cta { padding:8px 12px; font-size:12px; }
@@ -328,7 +337,7 @@ button { font: inherit; }
 @media (max-width: 620px) {
   .shell { width:min(calc(100% - 24px),var(--max)); }
   .floating-nav { width:calc(100% - 16px); left:8px; top:8px; padding:8px; border-radius:17px; grid-template-columns:minmax(0,1fr) auto auto; }
-  .brand-mark { width:32px; height:32px; font-size:11px; }
+  .brand-avatar { width:32px; height:32px; }
   .brand-name { font-size:16px; }
   .nav-cta { padding:8px 10px; font-size:11px; }
   .mobile-menu-toggle { width:34px; height:34px; }
