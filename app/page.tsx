@@ -139,7 +139,11 @@ const experience = [
 ];
 
 function Arrow() {
-  return <span aria-hidden="true">↗</span>;
+  return (
+    <svg className="link-arrow" viewBox="0 0 16 16" aria-hidden="true">
+      <path d="M5 11 11 5M6 5h5v5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
 }
 
 function ExternalLink({ href, children, className = "" }: { href: string; children: React.ReactNode; className?: string }) {
@@ -153,6 +157,7 @@ function ExternalLink({ href, children, className = "" }: { href: string; childr
 export default function Home() {
   const [mode, setMode] = useState<Mode>("firma");
   const [proofMode, setProofMode] = useState<ProofMode>("firmy");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -171,20 +176,38 @@ export default function Home() {
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
 
-      <header className="nav floating-nav">
-        <a className="brand" href="#top" aria-label="Michal Kardaš — nahoru">Michal Kardaš</a>
+      <header className={`nav floating-nav ${mobileMenuOpen ? "menu-open" : ""}`}>
+        <a className="brand" href="#top" aria-label="Michal Kardaš — nahoru" onClick={() => setMobileMenuOpen(false)}>
+          <span className="brand-mark">MK.</span>
+          <span className="brand-name">Michal Kardaš</span>
+        </a>
         <nav className="nav-links" aria-label="Hlavní navigace">
           <a href="#use-cases">Kde pomáhám</a>
           <a href="#outcomes">Co přináším</a>
           <a href="#experience">Zkušenosti</a>
         </nav>
         <a href={LINKS.email} className="nav-cta">Napište mi</a>
+        <button
+          className="mobile-menu-toggle"
+          type="button"
+          aria-label={mobileMenuOpen ? "Zavřít menu" : "Otevřít menu"}
+          aria-expanded={mobileMenuOpen}
+          onClick={() => setMobileMenuOpen((open) => !open)}
+        >
+          <span></span><span></span>
+        </button>
+        <nav className="mobile-nav-panel" aria-label="Mobilní navigace">
+          <a href="#use-cases" onClick={() => setMobileMenuOpen(false)}>Kde pomáhám</a>
+          <a href="#outcomes" onClick={() => setMobileMenuOpen(false)}>Co přináším</a>
+          <a href="#experience" onClick={() => setMobileMenuOpen(false)}>Zkušenosti</a>
+          <a href="#contact" onClick={() => setMobileMenuOpen(false)}>Kontakt</a>
+        </nav>
       </header>
 
       <section className="hero shell" id="top">
         <div className="hero-grid">
           <div className="hero-copy">
-            <div className="availability"><span></span><strong>Otevřený nové seniorní roli</strong><small>Brno / jižní Morava / remote v ČR</small></div>
+            <div className="hero-status-row"><div className="availability"><span></span><strong>Otevřený nové seniorní roli</strong></div><div className="availability-location">Brno / jižní Morava / remote v ČR</div></div>
             <h1>Pomáhám firmám růst v digitálu.</h1>
             <div className="hero-tags hero-tags-primary" aria-label="Oblasti zaměření">
               <span>E-commerce</span><span>B2B</span><span>AI</span><span>Lepší rozhodování</span>
