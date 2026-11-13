@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: "%s | Michal Kardaš",
   },
   description:
-    "Pomáhám firmám růst v digitálu přes e-commerce, B2B, AI a lepší rozhodování. Strategie, roadmapy, business cases, ROI a digitální růst.",
+    "Pomáhám firmám růst v digitálu. E-commerce, B2B, AI a lepší rozhodování — od diagnózy přes priority až po roadmapu a business case.",
   keywords: [
     "Michal Kardaš",
     "e-commerce",
@@ -36,14 +36,14 @@ export const metadata: Metadata = {
     type: "website",
     url: siteUrl,
     title: "Michal Kardaš | E-commerce, B2B, AI & Digital Business",
-    description: "Pomáhám firmám růst v digitálu — přes e-commerce, B2B, AI a lepší rozhodování.",
+    description: "Pomáhám firmám růst v digitálu. E-commerce, B2B, AI a lepší rozhodování.",
     siteName: "Michal Kardaš",
     locale: "cs_CZ",
   },
   twitter: {
     card: "summary_large_image",
     title: "Michal Kardaš | E-commerce, B2B, AI & Digital Business",
-    description: "Pomáhám firmám růst v digitálu — přes e-commerce, B2B, AI a lepší rozhodování.",
+    description: "Pomáhám firmám růst v digitálu. E-commerce, B2B, AI a lepší rozhodování.",
   },
   robots: { index: true, follow: true },
 };
