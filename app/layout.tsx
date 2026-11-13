@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: "%s | Michal Kardaš",
   },
   description:
-    "Pomáhám firmám růst v digitálu. E-commerce, B2B, AI a lepší rozhodování — od diagnózy přes priority až po roadmapu a business case.",
+    "Pomáhám firmám růst v digitálu — e-commerce, B2B, AI, business case, roadmapa a převzetí odpovědnosti za dotažení projektu.",
   keywords: [
     "Michal Kardaš",
     "e-commerce",
