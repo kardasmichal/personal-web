@@ -1,18 +1,20 @@
-# kardas.cz — job search edition
+# kardas.cz
 
-Aktualizovaná osobní prezentace Michala Kardaše pro hledání nové seniorní role.
+Osobní web Michala Kardaše — problem-first verze pro hledání seniorní role.
 
-## Positioning
+## Deployment
 
-- Product / Product Lead
-- Delivery / Senior Project Management
-- Strategic Account / Client Leadership
-- E-commerce / Digital Lead
-- AI Delivery / AI Adoption
+Next.js App Router. Projekt je připravený pro Vercel bez speciální konfigurace.
 
-Geograficky: Brno / jižní Morava / remote v rámci ČR.
+- Framework: Next.js
+- Root Directory: ./
+- Build Command: default
+- Output Directory: default
 
-## Nasazení
+## Obsah
 
-Obsah této složky nahraj do kořenové složky projektu, kterou Vercel používá jako Root Directory.
-V GitHubu lze použít Add file → Upload files a přetáhnout celý obsah této složky.
+- problem-first hero a use cases
+- přepínač Firma / Agentura
+- e-commerce / B2B / AI / roadmapa / business case & ROI
+- zkušenosti MIME digital, tlappka, Outboxers, Etnetera Activate a ACOMWARE
+- vybrané klientské značky

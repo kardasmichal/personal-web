@@ -1,15 +1,109 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 
 const LINKS = {
   linkedin: "https://www.linkedin.com/in/kardas",
   tlappka: "https://www.tlappka.cz",
-  buddyvet: "https://www.buddyvet.app",
   outboxers: "https://www.outboxers.com",
   mediar: "https://www.mediar.cz/kardas-a-pulkert-z-etnetery-zalozili-outboxers-chteji-prototypovat-inovace/",
   czechcrunch: "https://cc.cz/veterinar-v-kapse-cesky-startup-setri-cas-lidem-i-mazlickum-slama-a-hlavenka-do-nej-vkladaji-miliony/",
   x4b: "https://www.x4b.cz/praha2018/",
   redbutton: "https://zoom.rba.cz/clanky/michal-kardas",
 };
+
+const problems = [
+  {
+    n: "01",
+    title: "E-shop funguje. Ale business neroste.",
+    text: "Marketing běží, vývoj má backlog a data existují. Jen není jasné, jestli je problém v akvizici, konverzi, nabídce, retenci nebo někde úplně jinde.",
+    action: "Najdu s vámi místa, kde má změna největší šanci pohnout výsledkem.",
+    output: "Priority · KPI · roadmapa",
+  },
+  {
+    n: "02",
+    title: "B2B pořád stojí hlavně na obchodnících a e-mailu.",
+    text: "Ceníky, nabídky, opakované objednávky a individuální podmínky spotřebují víc času, než by musely.",
+    action: "Zmapuju proces a najdu, kde může digitál zvýšit obrat nebo snížit náklady.",
+    output: "B2B business case · postupná digitalizace",
+  },
+  {
+    n: "03",
+    title: "Všichni chtějí AI. Nikdo přesně neví, kde začít.",
+    text: "AI má smysl jen tam, kde řeší reálný problém — ne jako další technologická hračka.",
+    action: "Najdu use cases v procesech, produktech i práci lidí a seřadím je podle hodnoty, náročnosti a rizika.",
+    output: "AI use cases · první experimenty",
+  },
+  {
+    n: "04",
+    title: "Roadmapa je dlouhý seznam věcí, které chce každý.",
+    text: "Marketing, obchod, management i zákazníci mají své priority. Všechno je důležité — takže vlastně nic.",
+    action: "Převedu požadavky do společných priorit podle business cíle, zákazníka a očekávaného dopadu.",
+    output: "Prioritizace · roadmapa · jasné proč",
+  },
+  {
+    n: "05",
+    title: "Chcete investovat. Ale nevíte, jestli se to vrátí.",
+    text: "Redesign, B2B portál, nový produkt, automatizace nebo AI mohou stát statisíce až miliony.",
+    action: "Převedu nápad do ekonomiky: co musí změnit, kolik má vytvořit hodnoty a za jakých podmínek se investice vrátí.",
+    output: "Business case · scénáře · ROI",
+  },
+];
+
+const fit = {
+  firma: [
+    ["Máme e-shop, ale nevíme, kde je další růst.", "Najdu největší příležitosti a převedu je do konkrétního plánu."],
+    ["B2B nám pořád funguje hlavně přes obchodníky.", "Najdeme, co má smysl digitalizovat a kde je ekonomická návratnost."],
+    ["Management chce AI.", "Najdeme reálné use cases místo technologického dema."],
+    ["Každé oddělení chce něco jiného.", "Dostaneme priority do jedné roadmapy a společných metrik."],
+    ["Chceme investovat, ale potřebujeme vědět proč.", "Postavíme business case a způsob, jak výsledek měřit."],
+  ],
+  agentura: [
+    ["Klient přišel s řešením, ale možná ještě neznáme problém.", "Pomůžu discovery otočit od zadání k business cíli."],
+    ["PM hlídá delivery. Nikdo ale nevlastní businessovou stránku.", "Umím být seniorní protějšek klienta a držet směr, priority i hodnotu."],
+    ["Backlog roste rychleji než rozpočet.", "Pomůžu klientovi rozhodnout, co opravdu dělat a co odložit."],
+    ["Potřebujeme dlouhodobou roadmapu.", "Spojím business, UX, data, marketing a technologické možnosti do jednoho plánu."],
+    ["Chceme se posunout od dodavatele k partnerovi.", "Pomůžu vést strategickou debatu o businessu klienta, ne jen o ticketech a MD."],
+  ],
+};
+
+const experience = [
+  {
+    company: "MIME digital",
+    role: "Strategic Account Lead",
+    text: "Strategické vedení e-commerce klientů. Business růst, zákaznická cesta, KPI, kontinuální roadmapy, prioritizace a propojování klienta s UX, marketingem, analytikou a vývojem.",
+  },
+  {
+    company: "tlappka",
+    role: "CEO & Product Lead",
+    text: "Produktová strategie a roadmapa, finance, marketing, pojištění, B2B spolupráce a rozvoj nových revenue streamů. Rozhodování s vlastními penězi, ne jen zvenku.",
+  },
+  {
+    company: "Outboxers",
+    role: "Co-founder",
+    text: "Validace nových produktů, služeb a business modelů. Od problému přes prototyp a experiment až po rozhodnutí, zda má smysl řešení skutečně postavit.",
+  },
+  {
+    company: "Etnetera Activate",
+    role: "Business Consulting & UX",
+    text: "Digitální strategie, nové produkty, UX a customer experience. Propojování businessového cíle se zákaznickou potřebou a následnou realizací.",
+  },
+  {
+    company: "ACOMWARE",
+    role: "E-commerce consulting",
+    text: "E-commerce business, zákaznické chování, marketing a digitální řešení. Jedna z kapitol, na které stojí moje dnešní orientace na digitální obchod.",
+  },
+];
+
+const logos = [
+  ["Česká spořitelna", "/logos/ceska-sporitelna.svg"],
+  ["ČSOB", "/logos/csob.svg"],
+  ["Vodafone", "/logos/vodafone.svg"],
+  ["Škoda Auto", "/logos/skoda.svg"],
+  ["Economia", "/logos/economia.svg"],
+  ["DATART", "/logos/datart.svg"],
+];
 
 function Arrow() {
   return <span aria-hidden="true">↗</span>;
@@ -23,79 +117,42 @@ function ExternalLink({ href, children, className = "" }: { href: string; childr
   );
 }
 
-const strengths = [
-  {
-    n: "01",
-    title: "Product & roadmap",
-    text: "Umím převést business cíle a potřeby zákazníků do produktových priorit, discovery, roadmapy a rozhodnutí o tom, co má smysl dělat teď — a co ne.",
-  },
-  {
-    n: "02",
-    title: "Klient, stakeholders & delivery",
-    text: "Dokážu držet strategický vztah, sladit business, produkt, design a vývoj, hlídat očekávání i ekonomiku a posouvat projekt od požadavků k dlouhodobému rozvoji.",
-  },
-  {
-    n: "03",
-    title: "E-commerce & digital business",
-    text: "Rozumím digitálnímu prodeji, zákaznické zkušenosti a růstu. Umím hledat příležitosti v e-commerce, CRM, omnichannel i fungování interních a dodavatelských týmů.",
-  },
-  {
-    n: "04",
-    title: "Business & nové příležitosti",
-    text: "Mám zkušenost s business cases, validací, financemi i rozvojem nových revenue streamů. Neřeším jen funkce — zajímá mě, jakou hodnotu mají vytvořit pro firmu.",
-  },
-];
-
-const roles = [
-  ["Product Manager / Product Lead", "Produktová strategie, discovery, roadmapa, prioritizace a propojení zákaznických potřeb s business výsledkem."],
-  ["Delivery Lead / Senior Project Manager", "Řízení složitějších digitálních projektů, priorit, stakeholderů a dodávky napříč business a technickými týmy."],
-  ["Strategic Account / Client Lead", "Seniorní vedení klíčových klientů, hledání dalších příležitostí, dlouhodobá roadmapa a odpovědnost za hodnotu i ekonomiku spolupráce."],
-  ["E-commerce / Digital Lead", "Interní rozvoj digitálního obchodu, e-commerce strategie, zákaznická zkušenost, CRM, omnichannel a řízení externích dodavatelů."],
-  ["AI Delivery / AI Adoption", "Převod praktických možností AI do konkrétních use cases, workflow a změn fungování týmu — bez potřeby hrát si na AI developera."],
-];
-
 export default function Home() {
+  const [mode, setMode] = useState<"firma" | "agentura">("firma");
+
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Michal Kardaš",
     url: "https://kardas.cz",
     image: "https://kardas.cz/michal-kardas-dark.png",
-    jobTitle: "Senior Product / Delivery / Digital Business Leader",
+    jobTitle: "Business / Product / E-commerce",
     description:
-      "Seniorní product, delivery a digital business profil. Propojuji business, zákazníka, produkt a delivery. Otevřený nové roli v Brně, na jižní Moravě nebo remote v ČR.",
-    sameAs: [LINKS.linkedin, LINKS.tlappka, LINKS.buddyvet],
-    alumniOf: [
-      { "@type": "Organization", name: "Outboxers", url: LINKS.outboxers },
-      { "@type": "Organization", name: "Etnetera Activate" },
-    ],
+      "Pomáhám firmám růst v digitálu přes e-commerce, B2B, AI a lepší rozhodování. Strategie, roadmapy, business cases a digitální růst.",
+    sameAs: [LINKS.linkedin, LINKS.tlappka],
     knowsAbout: [
-      "Product strategy",
-      "Product discovery",
-      "Digital delivery",
-      "Strategic account management",
       "E-commerce",
+      "B2B digitalization",
+      "AI adoption",
+      "Product strategy",
+      "Roadmapping",
+      "Business cases",
       "Digital business",
       "Customer experience",
-      "Roadmapping",
-      "AI adoption",
     ],
   };
 
   return (
     <main>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
 
       <header className="nav shell">
         <a className="brand" href="#top" aria-label="Michal Kardaš — nahoru">
           MK<span className="brand-dot">.</span>
         </a>
         <nav aria-label="Hlavní navigace">
-          <a href="#strengths">Co přináším</a>
-          <a href="#roles">Role</a>
+          <a href="#problems">Poznáváte se?</a>
+          <a href="#fit">Firma / Agentura</a>
           <a href="#experience">Zkušenosti</a>
           <ExternalLink href={LINKS.linkedin} className="nav-cta">LinkedIn</ExternalLink>
         </nav>
@@ -105,253 +162,159 @@ export default function Home() {
         <div className="hero-grid">
           <div className="hero-copy">
             <div className="availability"><span></span> Otevřený nové seniorní roli · Brno / jižní Morava / remote v ČR</div>
-            <div className="eyebrow">Michal Kardaš · product / delivery / digital business</div>
+            <div className="eyebrow">Michal Kardaš · business / product / e-commerce</div>
             <h1>
-              Propojuju business, produkt a delivery, aby se dobré nápady <em>opravdu dostaly do provozu.</em>
+              Pomáhám firmám růst v digitálu — přes <em>e-commerce, B2B, AI a lepší rozhodování.</em>
             </h1>
             <p className="lead">
-              Přes 15 let se pohybuji v digitálu — od e-commerce a consultingu přes vedení klientů a produktů
-              až po budování vlastního businessu. Největší hodnotu přináším tam, kde je potřeba spojit
-              <strong> business cíl, zákazníka, priority a lidi, kteří řešení realizují.</strong>
+              Největší hodnotu přináším tam, kde firma ví, že <strong>něco může fungovat lépe</strong>, ale není ještě jasné co změnit, v jakém pořadí a jestli se to vyplatí.
             </p>
-            <p className="hero-note">Nejsem developer ani technický lead. Jsem člověk na rozhraní businessu, produktu, klienta a delivery.</p>
+            <div className="hero-tags" aria-label="Oblasti zaměření">
+              <span>E-commerce growth</span><span>B2B</span><span>AI use cases</span><span>Roadmapa</span><span>Business case & ROI</span>
+            </div>
             <div className="hero-actions">
-              <a className="button primary" href="#strengths">Co umím převzít ↓</a>
+              <a className="button primary" href="#problems">Poznáváte se? ↓</a>
               <ExternalLink href={LINKS.linkedin} className="button secondary">LinkedIn</ExternalLink>
             </div>
           </div>
 
           <figure className="hero-portrait">
-            <Image
-              src="/michal-kardas-dark.png"
-              alt="Michal Kardaš"
-              width={1400}
-              height={1800}
-              priority
-              sizes="(max-width: 900px) 100vw, 42vw"
-            />
+            <Image src="/michal-kardas-dark.png" alt="Michal Kardaš" width={1400} height={1800} priority sizes="(max-width: 900px) 100vw, 42vw" />
           </figure>
         </div>
         <div className="hero-mark" aria-hidden="true">K</div>
       </section>
 
-      <section className="section shell" id="strengths">
-        <div className="section-label">01 / Co přináším firmě</div>
-        <div className="split problems-intro">
-          <h2>Nejsem specialista na jeden kus digitálu. Umím spojit věci, které se ve firmách často řeší odděleně.</h2>
-          <div className="prose">
-            <p>
-              Produkt bez business kontextu skončí jako backlog. Strategie bez delivery jako prezentace. A vývoj bez priorit jako drahá továrna na funkce.
-            </p>
-            <p>
-              Moje síla je v tom, že dokážu držet <strong>celý kontext</strong> a pomoci týmu rozhodnout, co má největší smysl udělat — a dostat to do reality.
-            </p>
-          </div>
+      <section className="section shell" id="problems">
+        <div className="section-label">01 / Poznáváte se?</div>
+        <div className="section-heading compact-heading">
+          <h2>Nejdřív problém. Až potom řešení.</h2>
+          <p>Tohle jsou situace, ve kterých umím převzít odpovědnost za další krok.</p>
         </div>
 
-        <div className="problem-grid">
-          {strengths.map((item) => (
-            <article className="problem-card" key={item.n}>
-              <span>{item.n}</span>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
+        <div className="problem-stack">
+          {problems.map((item) => (
+            <article className="problem-row" key={item.n}>
+              <div className="problem-index">{item.n}</div>
+              <div className="problem-main">
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </div>
+              <div className="problem-answer">
+                <span>Co s tím</span>
+                <strong>{item.action}</strong>
+                <small>{item.output}</small>
+              </div>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="section projects-wrap" id="fit">
+      <section className="section dark-panel" id="fit">
         <div className="shell">
-          <div className="section-label light">02 / Kde dávám největší smysl</div>
-          <div className="split approach-intro">
-            <h2>Dva typy prostředí. Stejná role: vzít odpovědnost za výsledek, ne jen za dílčí úkol.</h2>
-            <p>
-              Nehledám nutně konkrétní název pozice. Důležitější je mandát, prostor něco ovlivnit a tým, se kterým lze věci opravdu posouvat.
-            </p>
+          <div className="section-label light">02 / Kde se v tom poznáte vy?</div>
+          <div className="fit-header">
+            <div>
+              <h2>Stejné schopnosti. Jiný kontext.</h2>
+              <p>Vyberte si prostředí, ve kterém mě chcete číst.</p>
+            </div>
+            <div className="mode-toggle" role="group" aria-label="Typ prostředí">
+              <button className={mode === "firma" ? "active" : ""} onClick={() => setMode("firma")}>Firma</button>
+              <button className={mode === "agentura" ? "active" : ""} onClick={() => setMode("agentura")}>Agentura</button>
+            </div>
           </div>
 
-          <div className="process-grid fit-grid">
-            <article className="process-card featured-process fit-card">
-              <div className="process-number">A</div>
-              <div>
-                <h3>Digitální / technologická firma</h3>
-                <p>
-                  Produkt, delivery, strategické vedení klientů nebo AI. Role, kde je potřeba rozumět businessu klienta, držet priority a propojovat více disciplín.
-                </p>
-                <strong>Product · Delivery · Strategic Client · AI</strong>
-              </div>
-            </article>
-            <article className="process-card fit-card">
-              <div className="process-number">B</div>
-              <div>
-                <h3>Tradiční výrobní nebo obchodní firma</h3>
-                <p>
-                  Interní e-commerce, digitalizace, produkt nebo obchodní rozvoj. Role, která propojí management, zákazníka, data a externí technologické dodavatele.
-                </p>
-                <strong>E-commerce · Digital · Product · Business Development</strong>
-              </div>
-            </article>
-          </div>
-
-          <div className="output-strip">
-            <span>Co je pro mě důležité</span>
-            <strong>Odpovědnost · důvěra · jasný business cíl · možnost prioritizovat · prostor zlepšovat fungování, ne jen odbavovat požadavky</strong>
+          <div className="fit-list">
+            {fit[mode].map(([problem, answer], i) => (
+              <article key={problem} className="fit-item">
+                <span>0{i + 1}</span>
+                <h3>{problem}</h3>
+                <p>{answer}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="section shell situations" id="roles">
-        <div className="section-label">03 / Role, které mi dávají smysl</div>
-        <div className="split role-intro">
-          <h2>Název pozice je druhotný. Podstatné je, za co budu skutečně odpovědný.</h2>
-          <div className="prose">
-            <p>
-              Nehledám čistě obchodní ani čistě technickou roli. Nejlépe funguje kombinace strategického pohledu, práce s lidmi a odpovědnosti za reálný výsledek.
-            </p>
+      <section className="section shell outcomes">
+        <div className="section-label">03 / Co ode mě firma získá</div>
+        <div className="outcome-grid">
+          <article><span>01</span><h3>Diagnózu</h3><p>Kde je skutečný problém nebo nevyužitá příležitost.</p></article>
+          <article><span>02</span><h3>Prioritu</h3><p>Co má smysl udělat jako první — a co teď naopak nedělat.</p></article>
+          <article><span>03</span><h3>Business case</h3><p>Proč, za kolik, s jakým dopadem a za jakých předpokladů.</p></article>
+          <article><span>04</span><h3>Roadmapu</h3><p>Konkrétní kroky, pořadí, hypotézy a metriky výsledku.</p></article>
+        </div>
+        <div className="boundary">
+          <span>Moje hranice</span>
+          <strong>Nejsem developer ani technical lead.</strong>
+          <p>Umím ale držet businessový směr od problému přes rozhodnutí a prioritizaci až po zadání a spolupráci s lidmi, kteří řešení realizují.</p>
+        </div>
+      </section>
+
+      <section className="section experience-section" id="experience">
+        <div className="shell">
+          <div className="section-label">04 / Už jsem u podobných problémů seděl</div>
+          <div className="experience-list">
+            {experience.map((item) => (
+              <article className="experience-item" key={item.company}>
+                <div className="experience-company">{item.company}</div>
+                <div>
+                  <div className="role">{item.role}</div>
+                  <p>{item.text}</p>
+                </div>
+              </article>
+            ))}
           </div>
         </div>
-        <div className="situation-list role-list">
-          {roles.map(([title, answer]) => (
-            <article key={title}>
-              <h3>{title}</h3>
-              <p>{answer}</p>
-            </article>
+      </section>
+
+      <section className="section shell proof">
+        <div className="section-label">05 / Zkušenost napříč značkami</div>
+        <div className="section-heading compact-heading">
+          <h2>Pracoval jsem na problémech velkých firem i vlastního startupu.</h2>
+          <p>Výběr klientů z předchozích rolí a projektů.</p>
+        </div>
+        <div className="logo-grid">
+          {logos.map(([name, src]) => (
+            <div className="logo-card" key={name} title={name}>
+              <Image src={src} alt={`${name} logo`} width={260} height={80} />
+            </div>
           ))}
         </div>
+        <div className="career-line">ACOMWARE <span>→</span> Etnetera Activate <span>→</span> Outboxers <span>→</span> MIME digital <span>·</span> tlappka</div>
       </section>
 
-      <section className="section manifesto">
-        <div className="shell">
-          <div className="section-label">04 / Jak pracuji</div>
-          <div className="principles">
-            <article><span>01</span><h3>Nejdřív problém, potom řešení.</h3><p>Než se rozjede projekt, chci vědět, co se má změnit u zákazníka nebo v businessu a jak poznáme úspěch.</p></article>
-            <article><span>02</span><h3>Priorita znamená umět říct ne.</h3><p>Roadmapa není seznam přání. Snažím se držet fokus na věcech s největším očekávaným dopadem a jasným důvodem.</p></article>
-            <article><span>03</span><h3>Delivery je společná disciplína.</h3><p>Business, produkt, design a vývoj musí rozumět stejnému cíli. Mojí rolí bývá tyto světy spojit a držet je pohromadě.</p></article>
-            <article><span>04</span><h3>Měřit výsledek, ne aktivitu.</h3><p>Počet schůzek, ticketů nebo nových funkcí není úspěch. Důležité je, co se změnilo pro zákazníka a firmu.</p></article>
-          </div>
-        </div>
-      </section>
-
-      <section className="section shell" id="experience">
-        <div className="section-label">05 / Zkušenosti</div>
-        <div className="split experience-intro">
-          <h2>Od e-commerce přes consulting a venture building až k vlastnímu produktu a seniornímu delivery.</h2>
-          <p>
-            Kariérně jsem se postupně posouval od jednotlivých digitálních disciplín k odpovědnosti za širší business a produktový kontext.
-          </p>
-        </div>
-
-        <div className="timeline">
-          <article className="timeline-item">
-            <div className="years">2026—současnost</div>
-            <div>
-              <div className="role">Strategic Account / Digital Delivery</div>
-              <h2>Strategie, roadmapy a dlouhodobý rozvoj klientů</h2>
-              <p>
-                Strategické vedení digitálních projektů a klientů: rozkrývání business cílů, discovery, roadmapy, prioritizace, kvalifikace dalších příležitostí a propojování businessu s delivery týmem. Důraz na dlouhodobou hodnotu spolupráce, ne jen dokončení projektu.
-              </p>
-            </div>
-          </article>
-
-          <article className="timeline-item">
-            <div className="years">2022—současnost</div>
-            <div>
-              <div className="role">Co-founder / CEO & Product Lead · tlappka & Buddyvet</div>
-              <h2>Produkt, finance a nové revenue streamy</h2>
-              <p>
-                Budování digitální veterinární služby od produktu a zákaznické zkušenosti přes ekonomiku a finance až po pojištění, B2B partnerství a nové obchodní modely. Praktická odpovědnost za rozhodnutí, která mají dopad na produkt i fungování firmy.
-              </p>
-              <div className="inline-links">
-                <ExternalLink href={LINKS.tlappka} className="text-link">tlappka.cz</ExternalLink>
-                <ExternalLink href={LINKS.buddyvet} className="text-link">buddyvet.app</ExternalLink>
-              </div>
-            </div>
-          </article>
-
-          <article className="timeline-item">
-            <div className="years">2017—2022</div>
-            <div>
-              <div className="role">Co-founder · Outboxers</div>
-              <h2>Nové produkty, business modely a validace</h2>
-              <p>
-                Spoluzaložil jsem studio zaměřené na product discovery, validaci nových businessů a venture building. Pracovali jsme například pro Českou spořitelnu, Economia, ČSOB, Vodafone nebo Škoda Auto.
-              </p>
-              <ExternalLink href={LINKS.outboxers} className="text-link">outboxers.com</ExternalLink>
-            </div>
-          </article>
-
-          <article className="timeline-item">
-            <div className="years">Před Outboxers</div>
-            <div>
-              <div className="role">Business consulting & UX · Etnetera Activate</div>
-              <h2>Digitální produkty z pohledu zákazníka i businessu</h2>
-              <p>
-                Vedl jsem tým zaměřený na business consulting a user experience. Pomáhali jsme firmám hledat a navrhovat digitální řešení, která spojovala zákaznické potřeby s obchodními cíli.
-              </p>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section className="section shell boundary" id="ai">
+      <section className="section shell ai-section">
         <div className="section-label">06 / AI v praxi</div>
-        <div className="split boundary-head">
-          <h2>AI používám jako pracovní nástroj. Ne jako buzzword.</h2>
+        <div className="split">
+          <h2>AI neberu jako produkt. Beru ji jako nový způsob, jak zlepšit práci a business.</h2>
           <div className="prose">
-            <p>
-              V každodenní práci používám Claude a AI agenty pro research, analýzu, přípravu podkladů, strukturování problémů, návrhy zadání, prototypování i zrychlení opakujících se workflow.
-            </p>
-            <p>
-              Nejsem AI engineer. Umím ale hledat <strong>reálné use cases</strong>, dostat AI do pracovního procesu a posoudit, kde opravdu šetří čas nebo zvyšuje kvalitu — a kde jen přidává další technologii bez jasné hodnoty.
-            </p>
+            <p>Prakticky používám Claude, agenty a automatizovaná workflow pro research, analýzu, produktovou práci, dokumentaci a rychlé prototypování.</p>
+            <p>Můj pohled není „kam dát AI“. Je to <strong>„co ve firmě stojí za zlepšení — a je AI nejlepší nástroj?“</strong></p>
           </div>
-        </div>
-        <div className="boundary-quote">
-          <span>Moje role u AI</span>
-          <strong>Pochopit problém → navrhnout použití → ověřit přínos → dostat změnu do fungování týmu.</strong>
-        </div>
-      </section>
-
-      <section className="section shell topics">
-        <div className="section-label">07 / Témata, ve kterých se pohybuji</div>
-        <div className="topic-list">
-          {["Product strategy & discovery", "Roadmapping & prioritization", "Digital delivery", "Strategic client leadership", "E-commerce & digital growth", "Customer experience", "New business & revenue streams", "AI adoption & workflows"].map((item) => (
-            <div key={item}>{item}<span>↗</span></div>
-          ))}
         </div>
       </section>
 
       <section className="section shell press">
-        <div className="section-label">08 / Média & vystoupení</div>
-        <div className="split press-intro">
-          <h2>Produkty, podnikání a digitální business řeším veřejně už řadu let.</h2>
-          <p>
-            Výběr rozhovorů, článků a konferencí z období Etnetery, Outboxers i budování vlastního produktu.
-          </p>
-        </div>
+        <div className="section-label">07 / Média & vystoupení</div>
         <div className="press-grid">
           <ExternalLink href={LINKS.czechcrunch} className="press-card"><span>CzechCrunch</span><strong>tlappka & startup</strong></ExternalLink>
           <ExternalLink href={LINKS.mediar} className="press-card"><span>Médiář</span><strong>Vznik Outboxers</strong></ExternalLink>
-          <ExternalLink href={LINKS.x4b} className="press-card"><span>X4B</span><strong>Product discovery & innovation</strong></ExternalLink>
-          <ExternalLink href={LINKS.redbutton} className="press-card"><span>Red Button</span><strong>Business & nové produkty</strong></ExternalLink>
+          <ExternalLink href={LINKS.x4b} className="press-card"><span>X4B</span><strong>Product & innovation</strong></ExternalLink>
+          <ExternalLink href={LINKS.redbutton} className="press-card"><span>Red Button</span><strong>Business & produkty</strong></ExternalLink>
         </div>
       </section>
 
-      <section className="contact" id="contact">
+      <section className="contact">
         <div className="shell contact-inner">
-          <div className="section-label light">09 / Nová role</div>
-          <h2>Hledáte člověka, který dokáže vzít nejasný business problém a dotáhnout ho s týmem k výsledku?</h2>
-          <p className="contact-lead">
-            Jsem otevřený nové seniorní roli. Nejvíc mi dává smysl Brno a jižní Morava, případně skutečně remote spolupráce v rámci ČR. Bydlím ve Ždánicích.
-          </p>
-          <ExternalLink href={LINKS.linkedin} className="contact-link">Spojme se na LinkedIn</ExternalLink>
+          <div className="section-label light">08 / Další krok</div>
+          <h2>Hledáte někoho, kdo najde, co má v digitálu smysl změnit — a převezme odpovědnost za další krok?</h2>
+          <p className="contact-sub">Hledám seniorní roli blízko businessu, rozhodování a reálnému výsledku. Brno · jižní Morava · remote v ČR.</p>
+          <ExternalLink href={LINKS.linkedin} className="contact-link">Napište mi na LinkedIn</ExternalLink>
         </div>
       </section>
 
-      <footer className="footer shell">
-        <span>© {new Date().getFullYear()} Michal Kardaš</span>
-        <span>kardas.cz</span>
-      </footer>
+      <footer className="footer shell"><span>© 2026 Michal Kardaš</span><span>kardas.cz</span></footer>
     </main>
   );
 }
