@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   applicationName: "Michal Kardaš",
   title: {
-    default: "Michal Kardaš | E-commerce, B2B, AI & Digital Growth",
+    default: "Michal Kardaš | E-commerce · B2B · AI · Digital Growth",
     template: "%s | Michal Kardaš",
   },
   description:
@@ -41,14 +41,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: siteUrl,
-    title: "Michal Kardaš | E-commerce, B2B, AI & Digital Growth",
+    title: "Michal Kardaš | E-commerce · B2B · AI · Digital Growth",
     description: "Pomáhám firmám růst v digitálu — e-commerce, B2B, AI a lepší rozhodování.",
     siteName: "Michal Kardaš",
     locale: "cs_CZ",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Michal Kardaš | E-commerce, B2B, AI & Digital Growth",
+    title: "Michal Kardaš | E-commerce · B2B · AI · Digital Growth",
     description: "Pomáhám firmám růst v digitálu — e-commerce, B2B, AI a lepší rozhodování.",
   },
   robots: {

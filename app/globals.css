@@ -182,6 +182,8 @@ button { font: inherit; }
 .mode-toggle button.active { background:var(--acid); color:#111; }
 
 .usecase-list { border-top:1px solid var(--line); }
+.usecase-list-panel.inactive { display:none; }
+.usecase-list-panel.active { display:block; }
 .usecase-item {
   display:grid;
   grid-template-columns:64px minmax(0,1.15fr) minmax(300px,.85fr);
@@ -217,6 +219,8 @@ button { font: inherit; }
 .proof-header { margin-bottom: 34px; }
 .proof-toggle { background:#0b0d0c; }
 .logo-grid { display:grid; gap:12px; margin-bottom:54px; }
+.proof-panel.inactive { display:none; }
+.proof-panel.active { display:grid; }
 .logo-grid-firmy,.logo-grid-eshopy { grid-template-columns:repeat(4,1fr); }
 .logo-grid-startupy { grid-template-columns:repeat(3,1fr); }
 .logo-card {

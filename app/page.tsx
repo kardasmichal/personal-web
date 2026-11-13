@@ -260,19 +260,27 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="usecase-list">
-            {useCases[mode].map((item, i) => (
-              <article className="usecase-item" key={item.title}>
-                <div className="usecase-index">0{i + 1}</div>
-                <div className="usecase-main">
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                </div>
-                <div className="usecase-answer">
-                  <strong>{item.action}</strong>
-                  <small>{item.output}</small>
-                </div>
-              </article>
+          <div className="usecase-stacks">
+            {(Object.keys(useCases) as Mode[]).map((groupMode) => (
+              <div
+                className={`usecase-list usecase-list-panel ${mode === groupMode ? "active" : "inactive"}`}
+                aria-hidden={mode !== groupMode}
+                key={groupMode}
+              >
+                {useCases[groupMode].map((item, i) => (
+                  <article className="usecase-item" key={item.title}>
+                    <div className="usecase-index">0{i + 1}</div>
+                    <div className="usecase-main">
+                      <h3>{item.title}</h3>
+                      <p>{item.text}</p>
+                    </div>
+                    <div className="usecase-answer">
+                      <strong>{item.action}</strong>
+                      <small>{item.output}</small>
+                    </div>
+                  </article>
+                ))}
+              </div>
             ))}
           </div>
         </div>
@@ -313,10 +321,18 @@ export default function Home() {
             </div>
           </div>
 
-          <div className={`logo-grid logo-grid-${proofMode}`}>
-            {proof[proofMode].map((item) => (
-              <div className="logo-card" key={item.name} title={item.name}>
-                <Image src={item.src} alt={`${item.name} logo`} width={420} height={180} />
+          <div className="proof-stacks">
+            {(Object.keys(proof) as ProofMode[]).map((groupMode) => (
+              <div
+                className={`logo-grid logo-grid-${groupMode} proof-panel ${proofMode === groupMode ? "active" : "inactive"}`}
+                aria-hidden={proofMode !== groupMode}
+                key={groupMode}
+              >
+                {proof[groupMode].map((item) => (
+                  <div className="logo-card" key={item.name} title={item.name}>
+                    <Image src={item.src} alt={`${item.name} logo`} width={420} height={180} />
+                  </div>
+                ))}
               </div>
             ))}
           </div>

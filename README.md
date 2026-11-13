@@ -1,12 +1,22 @@
 # kardas.cz
 
-Osobní web Michala Kardaše — Next.js / App Router.
+Next.js personal website for Michal Kardaš.
 
-## Nasazení na Vercel
+## Deploy
+Import the repository into Vercel with:
 - Framework: Next.js
-- Root Directory: `./`
-- Build Command: default
-- Output Directory: default
+- Root Directory: ./
+- Build / Output / Install: defaults
 
-## Obsah
-Problem-first osobní positioning pro seniorní role v digitálním businessu, e-commerce, B2B, AI a produktovém řízení.
+## Canonical domain
+The code uses **https://kardas.cz** as the canonical URL everywhere (metadata, schema, sitemap, robots, llms.txt).
+In Vercel Domains, make `kardas.cz` the production domain and redirect `www.kardas.cz` -> `kardas.cz` with a permanent redirect.
+
+## SEO / GEO
+- canonical metadata
+- ProfilePage + Person + WebSite JSON-LD
+- robots.txt with OAI-SearchBot allowed
+- sitemap.xml
+- llms.txt
+- static Open Graph / Twitter image with portrait and square-crop-safe composition
+- all Firma/Agentura and Firmy/E-shopy/Startupy content is present in server-rendered HTML; toggles only control visual visibility
