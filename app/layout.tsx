@@ -37,6 +37,14 @@ export const metadata: Metadata = {
   creator: "Michal Kardaš",
   publisher: "Michal Kardaš",
   category: "Digital Business",
+  manifest: "/site.webmanifest",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/favicon-96x96.png", type: "image/png", sizes: "96x96" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  },
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
