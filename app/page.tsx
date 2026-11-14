@@ -168,7 +168,6 @@ export default function Home() {
         url: "https://kardas.cz",
         name: "Michal Kardaš — digitální růst, e-commerce, B2B a AI",
         inLanguage: "cs-CZ",
-        dateModified: "2026-11-13",
         mainEntity: { "@id": "https://kardas.cz/#person" },
       },
       {
